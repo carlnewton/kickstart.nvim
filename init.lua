@@ -71,6 +71,10 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.colorcolumn = '120'
 
+vim.cmd [[
+  autocmd FileType twig setlocal filetype=twig.html
+]]
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 vim.keymap.set('n', '<leader>b', '<C-^>', { desc = 'Go back to previous buffer' })
@@ -1013,6 +1017,7 @@ require('lazy').setup({
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
     'catppuccin/nvim',
+    lazy = false,
     priority = 1000, -- Make sure to load this before all the other start plugins.
     init = function()
       -- Load the colorscheme here.
@@ -1045,6 +1050,9 @@ require('lazy').setup({
       -- - sd'   - [S]urround [D]elete [']quotes
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
+
+      -- Highlight trailing whitespace
+      require('mini.trailspace').setup()
 
       -- Simple and easy statusline.
       --  You could remove this setup call if you don't like it,
